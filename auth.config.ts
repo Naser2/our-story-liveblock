@@ -2,6 +2,13 @@ import type { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getUser } from "@/lib/database";
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+}
+
 export const authConfig: NextAuthConfig = {
   // Configure one or more authentication providers
   // More info: https://next-auth.js.org/providers/
