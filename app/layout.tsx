@@ -22,7 +22,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
-  console.log("NEXT_AUTH_SESSION: " + session)
+  console.log("NEXT_AUTH_SESSION: " + session);
   return (
     <ConvexClientProvider>
       <html lang="en">

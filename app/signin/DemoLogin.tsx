@@ -5,28 +5,25 @@ import {
   SignOutButton,
   SignedIn,
   SignedOut,
-  useUser
+  useUser,
 } from "@clerk/nextjs";
-import { collectionGroup, query, where } from "firebase/firestore";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useCollection } from "react-firebase-hooks/firestore";
 import { users } from "@/data/users";
 import { Select } from "@/primitives/Select";
-import { db } from "@/firebase";
 import styles from "./signin.module.css";
 // Used only for demo authentication, displays a dropdown of users
 export function DemoLogin() {
   const { user } = useUser();
-  const [data] = useCollection(
-    user &&
-      query(
-        collectionGroup(db, "rooms"),
-        where("userId", "==", user?.emailAddresses[0].toString())
-      )
-  );
-
+  // const [data] = useCollection(
+  //   user &&
+  //     query(
+  //       collectionGroup(db, "rooms"),
+  //       where("userId", "==", user?.emailAddresses[0].toString())
+  //     )
+  // );
+  console.log("CLERCK USER: " + user);
   return (
     <div className={styles.actions}>
       <SignedOut>
