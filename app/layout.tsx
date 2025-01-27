@@ -8,6 +8,7 @@ import "@liveblocks/react-ui/styles/dark/media-query.css";
 import "@liveblocks/react-tiptap/styles.css";
 import "../styles/globals.css";
 import "../styles/text-editor.css";
+import { ConvexClientProvider } from "@/ConvexClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +23,12 @@ export default async function RootLayout({
 }) {
   const session = await auth();
   return (
+    <ConvexClientProvider>
     <html lang="en">
       <body className={inter.className}>
         <Providers session={session}>{children}</Providers>
       </body>
     </html>
+    </ConvexClientProvider>
   );
 }
