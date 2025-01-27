@@ -2,12 +2,21 @@ import type { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getUser } from "@/lib/database";
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  avatar: string;
-}
+// interface DatabaseUser {
+//   id: string;
+//   name: string;
+//   email: string;
+//   avatar?: string;
+//   groupIds: string[];
+//   color: string;
+// }
+
+// interface User {
+//   id: string;
+//   name: string;
+//   email: string;
+//   avatar: string;
+// }
 
 export const authConfig: NextAuthConfig = {
   // Configure one or more authentication providers
@@ -18,19 +27,17 @@ export const authConfig: NextAuthConfig = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {
-          label: "email",
-          type: "text",
-        },
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials || typeof credentials.email !== "string") {
           throw new Error("No credentials or email");
         }
 
-        const user: User | null = await getUser(credentials.email);
+        const user = await getUser(credentials.email);
 
-        if (!user) {
+        if (!user || user === null) {
           throw new Error("User not found");
         }
 
