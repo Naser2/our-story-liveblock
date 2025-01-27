@@ -24,11 +24,11 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <ConvexClientProvider>
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers session={session}>{children}</Providers>
-      </body>
-    </html>
+      <html lang="en">
+        <body className={inter.className}>
+          <Providers session={session}>{children}</Providers>
+        </body>
+      </html>
     </ConvexClientProvider>
   );
 }
